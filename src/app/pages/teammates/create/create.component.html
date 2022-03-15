@@ -1,0 +1,101 @@
+<img width="200" src="./../../../assets/img/flagArgentina.png" alt="">
+
+<form class="formGrid" [formGroup]="designerForm" (ngSubmit)="onSubmit($event)" novalidate>
+    <fieldset>
+        <legend>Basic info</legend>
+        <div class="input__group">
+            <label>Name</label>
+            <input type="text" formControlName="name" placeholder="full name" required>
+        </div>
+        <div class="input__group">
+            <label>Lastname</label>
+            <input type="text" formControlName="lastName" placeholder="full name" required>
+        </div>
+    
+        <div class="input__group">
+            <label>Photo</label>
+            <input type="text" formControlName="photo" placeholder="paste URL" required>
+        </div>
+    </fieldset>
+    <fieldset>   
+        <legend>Contact info</legend>
+        <div class="input__group">
+            <label>Country</label>
+            <select formControlName="country" placeholder="country" [(ngModel)]="selectedCountry.id" (change)="onSelect($any($event).target.value)">
+                <option value="0">--select your country--</option>
+                <option *ngFor="let country of designerService.countries" [value]="country.name">{{ country.name }}
+            </option>
+            </select>
+        </div>
+        <div class="input__group">
+            <label>City</label>
+            <select formControlName="city" placeholder="city" [(ngModel)]="selectedCity.id">
+                <option value="0">--select your city--</option>
+                <option *ngFor="let city of dropdownCity" [value]="city.name">{{ city.name }}</option>
+            </select>
+        </div>
+        <div class="input__group">
+            <label>Email</label>
+            <input type="email" formControlName="email" placeholder="email address">
+        </div>
+        <div class="input__group">
+            <label>Phone</label>
+            <input type="number" formControlName="phone" placeholder="cel number">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Profile</legend>
+        <div class="input__group">
+            <label>Guild</label>
+            <select formControlName="guild" placeholder="select your guild">
+                <option *ngFor="let guild of designerService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+            </select>
+        </div>
+        <div class="input__group">
+            <label>Verticals</label>
+            <select formControlName="verticals" placeholder="verticals">
+                <option *ngFor="let vert of designerService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
+            </select>
+            <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
+        </div>
+        <label>Skills</label>
+        <div class="detailGrid--checkbox">
+                <ng-container *ngFor="let skill of designerService.skills; let i = index">
+                    <div *ngIf="skill.featured === true">
+                        <input  type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
+                        {{ skill.name }}
+                    </div>
+                </ng-container>
+                <ng-container *ngFor="let skill of designerService.skills; let i = index">
+                    <div *ngIf="moreSkills && skill.featured === false">
+                        <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
+                        {{ skill.name }}
+                    </div>
+                </ng-container>
+            </div>
+            <input type="checkbox" class="" (click)="showMore()">Show more
+            <label>Other skill</label>
+            <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    
+        <label>Tools</label>
+        <div class="detailGrid--checkbox">
+            <span *ngFor="let tool of designerService.tools; let i = index">
+                <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
+                {{ tool.name }}
+            </span>
+        </div>
+        <label>Other tools</label>
+        <textarea formControlName="otherTool" placeholder="otherTool" id="" name="" rows="1"></textarea>             
+    </fieldset>
+    <fieldset>
+        <legend>Complementary info</legend>
+        <textarea formControlName="interests" placeholder="interests" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="projects" placeholder="projects" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="goToPerson" placeholder="goToPerson" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="bio" placeholder="bio" id="" name="" rows="10"></textarea>             
+    </fieldset>
+    <div>
+        <button type="submit" [disabled]="!designerForm.valid">Create</button>
+        <button type="reset">Reset</button>
+    </div>
+</form>

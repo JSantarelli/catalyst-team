@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'catalyst-team';
+  sidePanel = false;
+
+  receiveSidePanel($event) {
+    this.sidePanel = $event;
+  }
+
+  toggleSidepanel() {
+    this.sidePanel = !this.sidePanel;
+  }
+
+  closeSidepanel() {
+    if(this.sidePanel = true) {
+      this.sidePanel = false;
+    }
+  }
+
 }

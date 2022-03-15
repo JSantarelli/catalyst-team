@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyAdk92lmjmwb79nASEPUZELZPVdJcsl6_U",
+    authDomain: "concentrix-catalyst.firebaseapp.com",
+    projectId: "concentrix-catalyst",
+    storageBucket: "concentrix-catalyst.appspot.com",
+    messagingSenderId: "1075913327534",
+    appId: "1:1075913327534:web:112f4f7d1cecc547b9be3f"
+  }
 };
 
 /*

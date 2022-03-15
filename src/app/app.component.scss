@@ -1,0 +1,439 @@
+@import './assets/scss/variables/colors';
+
+// BEM | SMACSS
+
+
+// TEMPLATES
+
+//  Header
+#header {
+    background: transparent!important;
+    -webkit-box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    left: 0;
+    padding: 0 .5rem;
+    position: relative;
+    top: 0;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    width: 100%;
+    z-index: 1;
+
+    nav {
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            app-logo#catalystLogo {
+                > svg {
+                    width: 150px;
+                    max-width: 200px !important;
+                }
+            }
+
+            li {
+                display: inline-block;
+                font-weight: 400;
+                padding: 2.1rem 0;
+
+                &:not(:last-child) {
+                    margin-right: 1.4rem;
+                }
+
+                a {
+                    color: #000;
+                    font-size: .8125rem;
+                    margin-right: 0.5rem;
+
+                    &:hover {
+                        color: #036;
+                    }
+                }
+            }
+
+            button {
+                align-self: flex-end;
+            }        
+
+        }
+    }
+}
+
+// List
+
+// Grid
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-flow: dense;
+    grid-auto-rows: 320px;
+    grid-gap: 10px;
+}
+
+// Detail
+
+// Form
+.searchBar {
+    border-color: #d6dce5;
+    border-style: solid;
+    border-width: 2px 0 2px 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 1rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+form.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    grid-gap: 2rem;
+}
+
+.input__group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    color: black;
+    // float: left;
+    line-height: 1.2em;
+    padding-top: 0.3em;
+    font-size: .875rem;
+    margin-bottom: 0.625rem;
+    width: auto!important;
+}
+input, select, textarea {
+    box-shadow: none;
+    font-size: 1rem;
+    height: auto;
+    width: auto;
+    padding: 1.25rem;
+
+    &:focus {
+        border: solid 1px #009999;
+    }
+}
+
+select {
+    margin-bottom: .5rem;
+}
+
+textarea {
+    width: 95%;
+}
+
+form[readOnly] {
+    input {
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+// BLOCKS
+
+// Card
+// CARDS
+.card {
+    display: flex;
+    position: relative;
+	flex-direction: column;
+	padding: 1rem;
+	justify-content: flex-end;
+	align-items: flex-start;
+	box-shadow: 1px 3px 5px 3px lightgrey;
+	text-align: left;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // TODO: need absolute results
+
+    // TODO: if responsive    
+    // max-width: 50vw;
+    
+    &.expandCard {
+        transition: all 1s ease;
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    // Asses the cascade option based on guild selected
+    .card__img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mix-blend-mode: multiply;
+        z-index: -1;
+        transform: translateX(-1rem);
+    }
+
+    .card__img--rounded {
+        border-radius: 999px;
+        align-self: center;
+        object-fit: cover;
+        width: 5rem;
+        height: 5rem;
+
+        &.border {
+            border: solid 5px var(--guildColor);
+        }    
+        
+        &.border-digital {
+            --guildColor: #009999;
+        }
+                
+        &.border-brand {
+            --guildColor: rgb(247, 127, 0);
+        }
+
+        &.border-product {
+            --guildColor: rgb(191, 214, 46);
+        }
+
+        &.border-omnichannel {
+            --guildColor: rgb(255, 102, 51);
+        }
+    }
+
+    .card__prefix {
+        font-size: .65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        &.digital {
+            color: $colorTerciario;
+        }
+
+        &.brand {
+            color: $orange;
+        }
+
+        &.product {
+            color: $green;
+        }
+
+        &.omnichannel {
+            color: $darkOrange;
+        }
+    }
+
+    .card__title {
+        font-size: 1.5rem;
+    }
+
+    .card__subtitle {
+		font-size: 1rem;
+		font-weight: 400;
+    }
+
+    .card__subtitle--link {
+        background-color: $colorPrimario;
+		border-radius: 50px;
+		color: white;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.25rem;
+		margin-top: 25px;
+		text-transform: uppercase;
+		text-rendering: optimizeLegibility;
+		padding: 0.25rem 0.5rem;
+		width: 100%;
+    }
+
+    // modificadores de estados
+    &:hover {
+        cursor: pointer;
+        background-color: lightsteelgray;
+    }
+
+    // override inputs en cards
+    input[type="checkbox"] {
+        opacity: 0;
+    }
+
+    label {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// Title
+.title {
+    cursor: auto;
+    color: $white;
+    display: inline;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+    line-height: 16px;
+    text-transform: uppercase;
+    text-decoration-skip: objects;
+    width: auto;
+}
+
+.subtitle {
+    color: $white;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+// Item
+
+// Label
+%baseText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    height: min-content;
+    // margin: .25rem 1rem;
+}
+
+.text-group {
+    @extend %baseText;
+    margin-bottom: 1rem;
+
+    &--sm {
+        @extend %baseText;
+        label, p {
+            font-size: .65rem;
+        }
+        
+        &:last-child {
+            grid-column: span 3;
+        }
+
+        label {
+            color: white;
+            text-transform: uppercase;
+            font-weight: bolder;
+            margin-bottom: .25rem;
+        }
+    }
+
+}
+
+// Button
+.button-group {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+    opacity: .1;
+
+    &:hover {
+        transition: opacity .25s ease-in;
+        opacity: 1;
+    }
+}
+
+.button {
+    background-color: $orange;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.20!important;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0em;
+    border-radius: 0.2em;
+    padding: 0.6em 1.6em;
+    background: #ff6633;
+    height: 38px;
+
+    &:hover {
+        background-color: $darkOrange;
+    }
+}
+
+// Badge
+
+
+// ELEMENTS
+
+// Icons
+.icon {
+    width: 1rem;
+    height: 1rem;
+    padding: .25rem;
+    border-radius: 999px;
+    background-color: $orange;
+}
+
+%baseIcon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+}
+
+.plus {
+    @extend %baseIcon;
+    background-image: url(../app/assets/icons/plus.svg);
+}
+
+.pencil {
+    @extend %baseIcon;
+    background-image: url(../app/assets/icons/edit-2.svg);
+}
+
+.trash {
+    @extend %baseIcon;
+    background-image: url(../app/assets/icons/trash-2.svg);
+}
+
+// Images
+.img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    &.border {
+        border-width: 5px;
+        border-color: $colorTerciario;
+    }
+}
+
+// Text
+.textBlock {
+    position: absolute;
+}
+
+// WRAPPERS
+.detailGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-auto-flow: dense;
+    height: min-content;
+}
+
+.detailGrid--checkbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap row;
+}
+

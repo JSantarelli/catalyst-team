@@ -1,0 +1,22 @@
+#layout[type=sidepanel] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(60vw , 1fr));
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
+};
+
+#header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+#body {
+    grid-column: 1;
+    grid-row: 2;
+    // mix-blend-mode: luminosity;
+}
+
+#sidepanel {
+    grid-column: 2;
+    grid-row: 2;
+}
