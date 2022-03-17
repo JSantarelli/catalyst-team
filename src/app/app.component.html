@@ -5,23 +5,16 @@
     <ul>
       <app-logo id="catalystLogo"></app-logo>
       <li>
-        <a href="" routerLink="/create" (click)="toggleSidepanel()" routerLinkActive="active">Add designer</a>
+        <a href="" routerLink="/list-designer">Who we are</a>
       </li>
       <li>
-        <a href="" routerLink="/list-designer">View designer</a>
+        <a href="" routerLink="/list-designer">Around the world</a>
       </li>
       <li>
-        <a href="" routerLink="/create" (click)="toggleSidepanel()" routerLinkActive="active">Add designer</a>
-      </li>
-      <li>
-        <a href="" routerLink="/list-designer">View designer</a>
-      </li>
-      <li>
-        <button class="button" (click)="toggleSidepanel()">Hide/Show sidepanel</button>
-      </li>
-      <li>
-        <button class="button">Search</button>
-      </li>
+        <li>
+          <a href="" routerLink="/create" routerLinkActive="active">+</a>
+        </li>
+        <button class="button" (click)="newBarValue()">Search</button>
     </ul>
   </nav>
 </section>

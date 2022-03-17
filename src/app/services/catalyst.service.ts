@@ -5,17 +5,21 @@ import { HttpClient } from '@angular/common/http';
 // Firebase
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import data from './../assets/countries.json';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable()
   export class CatalystService { 
   Designer: Designer[] = [];
 
+  private searchBarSource = new BehaviorSubject<boolean>(false);
+  currentBarValue = this.searchBarSource.asObservable();
+
+
   constructor(
     private angularFirestore: AngularFirestore,
     protected http: HttpClient
     ) { 
-    console.log('el servicio funciona correctamente')
     // console.log("data : ", JSON.stringify(this.countries));
   }
 
@@ -31,7 +35,8 @@ guilds: Array<any> = [
   { name: 'digital experience'},
   { name: 'brand experience'},
   { name: 'product experience'},
-  { name: 'omnichannel'}
+  { name: 'omnichannel'},
+  { name: 'HCD'},
 ]
 
 countries: Array<any> = [
@@ -488,6 +493,7 @@ countries: Array<any> = [
     { name: 'Product Photography', value:'Product Photography', featured: false},
     { name: 'Programming', value:'Programming', featured: false},
     { name: 'Projection Mapping', value:'Projection Mapping', featured: false},
+    { name: 'Prototyping', value:'Prototyping', featured: true},
     { name: 'Responsive design', value:'Responsive design', featured: true},
     { name: 'Retouching', value:'Retouching', featured: false},
     { name: 'Set Design', value:'Set Design', featured: false},
@@ -504,6 +510,7 @@ countries: Array<any> = [
     { name: 'UI Design', value:'UI Design', featured: true},
     { name: 'UX Design', value:'UX Design', featured: true},
     { name: 'UX Writting', value:'UX Writting', featured: true},
+    { name: 'Visual Design', value:'Visual Design', featured: true},
     { name: 'Visual Effects', value:'Visual Effects', featured: false},
     { name: 'Visualization', value:'Visualization', featured: false},
     { name: 'Web Design', value:'Web Design', featured: true},
@@ -548,6 +555,10 @@ countries: Array<any> = [
     { name: 'Webflow', value:'Webflow'},
     { name: 'Wix', value:'Wix'},    
   ]
+
+  changeBarValue(searchBar: boolean) {
+    this.searchBarSource.next(searchBar);
+  }
 
   getDesignerDoc(id) {
       return this.angularFirestore.collection('designer-collection').doc(id).valueChanges()

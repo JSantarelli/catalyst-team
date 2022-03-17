@@ -1,6 +1,8 @@
-<input *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
+<span class="flex">
+    <input *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
+    <button *ngIf="searchBar" class="button" (click)="hideSearchBar()">X</button>
+</span>
 <section class="grid">
-
     <ng-container *ngFor="let designer of Designer| filter:searchText ; let i = index">
     
     <div #card class="card" [ngClass]="{'expandCard' : designer.details}">

@@ -153,10 +153,7 @@ form[readOnly] {
 	box-shadow: 1px 3px 5px 3px lightgrey;
 	text-align: left;
     background: linear-gradient(0deg, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    // TODO: need absolute results
-
-    // TODO: if responsive    
-    // max-width: 50vw;
+    // TODO: need absolute results 
     
     &.expandCard {
         transition: all 1s ease;
@@ -437,3 +434,10 @@ form[readOnly] {
     flex-flow: wrap row;
 }
 
+// RESPONSIVE
+    // TODO: detach
+    @media screen and (max-width: 780px) {
+        .card {
+            max-width: 30vw;
+        }    
+    }   

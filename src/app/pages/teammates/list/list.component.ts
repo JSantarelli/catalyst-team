@@ -12,8 +12,8 @@ export class ListDesignersComponent implements OnInit {
 
   Designer: Designer[] = [];
   searchText: any;
-  sidePanel: boolean = true;
-  searchBar = true;
+  sidePanel: boolean = false;
+  searchBar = false;
 
   active: boolean;
   @Output() sidePanelEvent = new EventEmitter<boolean>();
@@ -21,13 +21,13 @@ export class ListDesignersComponent implements OnInit {
 
   constructor(
     private catalystService: CatalystService,
-    private router: Router,
-    private element: ElementRef,
-    private renderer: Renderer2
+    private router: Router
   ) { 
   }
 
   ngOnInit(){
+    this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
+
     this.catalystService.getDesignersList().subscribe(res =>{ this.Designer = res.map( e => { return {
         id : e.payload.doc.id,
         ...e.payload.doc.data() as{}
@@ -44,35 +44,24 @@ export class ListDesignersComponent implements OnInit {
 
     editDesigner(Designer: Designer) {
       this.router.navigate(['/edit/:id', { id: Designer.id }]);
-      this.sidePanelEvent.emit(this.sidePanel);
+      // this.sidePanelEvent.emit(this.sidePanel);
     }
 
     previousIndex: number = -1;
     public details: boolean = false;
 
     viewDesigner(index) {
-      // this.Designer[index].details = !this.Designer[index].details;
-
-    // Checking if same picture clicked or new
     if (this.previousIndex >= 0 && this.previousIndex != index) {
-      //  If new picture is clicked then closing previous picture
       this.Designer[this.previousIndex].details = false;
     }
+
     // Updating index
     this.previousIndex = index;
     this.Designer[index].details = !this.Designer[index].details;
-
-    // viewDesigner(Designer: Designer) {
-    // this.router.navigate(['/detail/:id', { id: Designer.id }]);
-    // this.sidePanelEvent.emit(this.sidePanel);
    }
 
-   receiveSideSearchBar($event) {
-    this.searchBar = $event;
+   hideSearchBar() {
+    this.catalystService.changeBarValue(false);
   }
-
-   showSearchBar() {
-     this.searchBar = !this.searchBar;
-   }
 
   }
