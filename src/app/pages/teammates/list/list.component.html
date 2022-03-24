@@ -1,55 +1,56 @@
-<span class="flex">
-    <input *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
-    <button *ngIf="searchBar" class="button" (click)="hideSearchBar()">X</button>
+<span class="flex" [ngClass]="{ 'expandSearch' : searchBar }">
+    <input  *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
+    <button *ngIf="searchBar" class="button button--lg" (click)="hideSearchBar()">X</button>
 </span>
 <section class="grid">
     <ng-container *ngFor="let designer of Designer| filter:searchText ; let i = index">
-    
-    <div #card class="card" [ngClass]="{'expandCard' : designer.details}">
-        <div class="button-group">
-            <i class="icon trash" (click)="removeDesigner(designer)"></i>
-            <i class="icon pencil" (click)="editDesigner(designer)"></i>
-            <!-- <button class="button" routerLink="/edit/{{ designer.id }}">Update</button> -->
-            <i class="icon plus" (click)="viewDesigner(i)"></i>
-            <!-- <button class="button" routerLink="/detail/{{ designer.id }}" (click)="viewDesigner(designer)">Detail</button> -->
-            <!-- <button class="button" [routerLink]="[designer.id]">Detail</button> -->
+    <div #card class="card" [ngClass]="{'expandCard' : designer.details }" (click)="viewDesigner(i)">
+        <div class="card__overlay card__overlay--{{ designer.guild }}">
+            <span class="btn__container">
+                <i class="icon trash" (click)="removeDesigner(designer)"></i>
+                <i class="icon pencil" (click)="editDesigner(designer)"></i>
+                <!-- <button class="button" routerLink="/edit/{{ designer.id }}">Update</button> -->
+                <!-- <i class="icon plus" (click)="viewDesigner(i)"></i> -->
+                <!-- <button class="button" routerLink="/detail/{{ designer.id }}" (click)="viewDesigner(designer)">Detail</button> -->
+                <!-- <button class="button" [routerLink]="[designer.id]">Detail</button> -->
+            </span>
         </div>
         <img class="card__img border border-{{ designer.guild }}" src="{{ designer.photo }}" alt=""> 
         
         <section class="textBlock">
             <div class="text-group">
-                            <div>
-                                <p class="card__prefix" [ngClass]="{ 'brand' : designer.guild === 'brand experience', 'omnichannel' : designer.guild === 'omnichannel' }">
-                                    {{ designer.guild }} {{i}}
-                                </p>
-                                <h3 class="title">{{ designer.name }} {{ designer.lastName }}</h3>
-                                <p class="subtitle">{{ designer.verticals }} {{ designer.otherVertical }}</p>
-                                <p class="subtitle">{{ designer.email }}</p>
-                            </div>
+                <div>
+                    <p class="card__prefix" [ngClass]="{ 'brand' : designer.guild === 'brand', 'omnichannel' : designer.guild === 'omnichannel', 'digital' : designer.guild === 'digital', 'product' : designer.guild === 'product', 'hcd' : designer.guild === 'HCD' }">
+                        {{ designer.guild }}
+                    </p>
+                    <h3 class="title">{{ designer.name }} {{ designer.lastName }}</h3>
+                    <p class="subtitle">{{ designer.verticals }} {{ designer.otherVertical }}</p>
+                    <p class="subtitle">{{ designer.email }}</p>
+                </div>
             </div>
             <div class="detailGrid"> 
-                            <ng-container *ngIf="designer.details">
-                                    <div class="text-group--sm">
-                                        <label>Skills</label>
-                                        <p class="subtitle">{{ designer.skills }} {{ designer.otherSkill }}</p>
-                                    </div>
-                                    <div class="text-group--sm">
-                                        <label>Phone</label>
-                                        <p class="subtitle">{{ designer.phone }}</p>        
-                                    </div>
-                                    <div class="text-group--sm">
-                                        <label>Tools</label>
-                                        <p class="subtitle">{{ designer.tools }} {{ designer.otherTool }}</p>
-                                    </div>
-                                    <div class="text-group--sm">
-                                        <label>City</label>
-                                        <p class="subtitle">{{ designer.city }}, {{ designer.country }}</p>   
-                                    </div>
-                                    <div class="text-group--sm">
-                                        <label>Bio</label>
-                                        <p class="subtitle">{{ designer.bio }}</p>
-                                    </div>
-                            </ng-container>
+                <ng-container *ngIf="designer.details">
+                        <div class="text-group--sm">
+                            <label>Skills</label>
+                            <p class="subtitle">{{ designer.skills }} {{ designer.otherSkill }}</p>
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Phone</label>
+                            <p class="subtitle">{{ designer.phone }}</p>        
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Tools</label>
+                            <p class="subtitle">{{ designer.tools }} {{ designer.otherTool }}</p>
+                        </div>
+                        <div class="text-group--sm">
+                            <label>City</label>
+                            <p class="subtitle">{{ designer.city }}, {{ designer.country }}</p>   
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Bio</label>
+                            <p class="subtitle">{{ designer.bio }}</p>
+                        </div>
+                </ng-container>
             </div>
         </section>
     </div>

@@ -22,9 +22,11 @@ export class CreateDesignerComponent implements OnInit {
   };
   dropdownCity: any = [];
   moreSkills = false;
+  sidePanel = false;
+  searchBar = false;
 
   constructor(
-    public designerService: CatalystService,
+    public catalystService: CatalystService,
     private formBuilder: FormBuilder,
     public router: Router
   ) {
@@ -51,12 +53,16 @@ export class CreateDesignerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TO-DO: conncect json file to app 
     // this.showAll();
     // this.onSelect(this.selectedCountry.id);
+
+    this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
+
   }
 
   showAll() {
-    this.designerService.getAll().subscribe(
+    this.catalystService.getAll().subscribe(
     (data:any)=> {
       this.countries = data;
       console.log(this.countries)
@@ -65,7 +71,7 @@ export class CreateDesignerComponent implements OnInit {
   }
 
   onSelect(value) {
-    this.dropdownCity = this.designerService.cities.filter(i => i.country == value);
+    this.dropdownCity = this.catalystService.cities.filter(i => i.country == value);
   }
 
   onCheckboxChange(e) {
@@ -106,9 +112,7 @@ export class CreateDesignerComponent implements OnInit {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.designerForm.value)
-
-    this.designerService.createDesigner(this.designerForm.value);
+    this.catalystService.createDesigner(this.designerForm.value);
     this.router.navigate(['list-designer']);
   }
 

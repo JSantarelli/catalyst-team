@@ -8,22 +8,24 @@
         <a href="" routerLink="/list-designer">Who we are</a>
       </li>
       <li>
-        <a href="" routerLink="/list-designer">Around the world</a>
+        <a href="" routerLink="/list-designer">Team map</a>
       </li>
       <li>
-        <li>
-          <a href="" routerLink="/create" routerLinkActive="active">+</a>
-        </li>
-        <button class="button" (click)="newBarValue()">Search</button>
+        <a href="" routerLink="/list-designer">Team dashboard</a>
+      </li>
+      <li>
+        <button *ngIf="!searchBar" class="button" (click)="newBarValue()">Search</button>
+        <button *ngIf="searchBar" class="button" (click)="hideSearchBar()">Stop searching</button>
+        <button class="button" (click)="goCreateDesigner()">+</button>
     </ul>
   </nav>
 </section>
   <section id="body">
-    <router-outlet>
-      <!-- <app-list (sidePanelEvent)="receiveSidePanel($event)"></app-list> -->
-    </router-outlet>
+    <app-list (sidePanelEvent)="receiveSidePanel($event)"></app-list>
   </section>
   <aside id="sidepanel" *ngIf="sidePanel">
     <button (click)="closeSidepanel()">X</button>
+    <router-outlet>
+    </router-outlet>
   </aside>
 </main>

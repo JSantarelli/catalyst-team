@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CatalystService } from 'src/app/services/catalyst.service';
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,18 @@ export class AppComponent {
   searchBar = false;
 
   constructor(
-    private catalystService: CatalystService
+    private catalystService: CatalystService,
+    private router: Router
   ) { 
   }
 
   ngOnInit(){
     this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
+  }
+
+  goCreateDesigner() {
+    this.sidePanel = !this.sidePanel;
+    this.router.navigate(['/create']);
   }
 
   receiveSidePanel($event) {
@@ -31,6 +37,10 @@ export class AppComponent {
 
   newBarValue() {
     this.catalystService.changeBarValue(true);
+  }
+  
+  hideSearchBar() {
+    this.catalystService.changeBarValue(false);
   }
 
   closeSidepanel() {

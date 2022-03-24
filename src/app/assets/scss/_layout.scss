@@ -1,7 +1,7 @@
 #layout[type=sidepanel] {
     display: grid;
     grid-template-columns: repeat(auto-fit , minmax(60vw , 1fr));
-    grid-template-rows: auto auto;
+    grid-template-rows: 2fr;
     grid-gap: 20px;
 };
 
@@ -11,12 +11,14 @@
 }
 
 #body {
+    transform: translateY(80px);
     grid-column: 1;
     grid-row: 2;
     // mix-blend-mode: luminosity;
 }
 
 #sidepanel {
+    transform: translateY(80px);
     grid-column: 2;
     grid-row: 2;
 }

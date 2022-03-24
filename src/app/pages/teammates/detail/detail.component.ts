@@ -46,7 +46,7 @@ export class DetailDesignerComponent implements OnInit {
   public designerList: Designer[];
 
   constructor(
-    public designerService: CatalystService,
+    public catalystService: CatalystService,
     public formBuilder: FormBuilder,
     private act: ActivatedRoute,
     
@@ -76,7 +76,7 @@ export class DetailDesignerComponent implements OnInit {
 
     const id = this.act.snapshot.paramMap.get('id');
 
-    this.designerService.getDesignerDoc(id).subscribe(res => {
+    this.catalystService.getDesignerDoc(id).subscribe(res => {
       this.designerRef = res;
       this.editForm = this.formBuilder.group({
         name:[this.designerRef.name],

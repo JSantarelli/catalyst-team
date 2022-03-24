@@ -12,7 +12,7 @@ export class ListDesignersComponent implements OnInit {
 
   Designer: Designer[] = [];
   searchText: any;
-  sidePanel: boolean = false;
+  sidePanel: boolean = true;
   searchBar = false;
 
   active: boolean;
@@ -43,8 +43,9 @@ export class ListDesignersComponent implements OnInit {
     }
 
     editDesigner(Designer: Designer) {
+      this.sidePanelEvent.emit(this.sidePanel);
       this.router.navigate(['/edit/:id', { id: Designer.id }]);
-      // this.sidePanelEvent.emit(this.sidePanel);
+      console.log(this.sidePanel)
     }
 
     previousIndex: number = -1;

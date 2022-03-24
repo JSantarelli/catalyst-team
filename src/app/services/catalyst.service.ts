@@ -32,11 +32,11 @@ import { BehaviorSubject } from 'rxjs';
 
 // Datasets (move to mock folder/ts)
 guilds: Array<any> = [
-  { name: 'digital experience'},
-  { name: 'brand experience'},
-  { name: 'product experience'},
+  { name: 'digital'},
+  { name: 'brand'},
+  { name: 'product'},
   { name: 'omnichannel'},
-  { name: 'HCD'},
+  { name: 'HCD'}
 ]
 
 countries: Array<any> = [
@@ -494,12 +494,14 @@ countries: Array<any> = [
     { name: 'Programming', value:'Programming', featured: false},
     { name: 'Projection Mapping', value:'Projection Mapping', featured: false},
     { name: 'Prototyping', value:'Prototyping', featured: true},
+    { name: 'Research', value:'Research', featured: true},
     { name: 'Responsive design', value:'Responsive design', featured: true},
     { name: 'Retouching', value:'Retouching', featured: false},
     { name: 'Set Design', value:'Set Design', featured: false},
     { name: 'Sketching', value:'Sketching', featured: true},
     { name: 'Sound Design', value:'Sound Design', featured: false},
     { name: 'Storyboarding', value:'Storyboarding', featured: true},
+    { name: 'Storytelling', value:'Storytelling', featured: true},
     { name: 'Street Art', value:'Street Art', featured: false},
     { name: 'Styleframing', value:'Styleframing', featured: false},
     { name: 'Surface Design', value:'Surface Design', featured: false},
@@ -509,6 +511,7 @@ countries: Array<any> = [
     { name: 'UI/UX', value:'UI/UX', featured: true},
     { name: 'UI Design', value:'UI Design', featured: true},
     { name: 'UX Design', value:'UX Design', featured: true},
+    { name: 'UX Research', value:'UX Research', featured: true},
     { name: 'UX Writting', value:'UX Writting', featured: true},
     { name: 'Visual Design', value:'Visual Design', featured: true},
     { name: 'Visual Effects', value:'Visual Effects', featured: false},
@@ -530,6 +533,7 @@ countries: Array<any> = [
     { name: 'Adobe Animate', value:'Adobe Animate'},
     { name: 'Adobe InDesign', value:'Adobe InDesign'},
     { name: 'Adobe Dreamweaber', value:'Adobe Dreamweaber'},
+    { name: 'Blender', value:'Blender'},
     { name: 'Corel Draw', value:'Corel Draw'},
     { name: 'VC Code', value:'VC Code'},
     { name: 'Atom', value:'Atom'},
@@ -582,6 +586,10 @@ countries: Array<any> = [
           lastName: designer.lastName,
           country: designer.country,
           city: designer.city,
+          email: designer.email,
+          phone: designer.phone,
+          photo: designer.photo,
+          guild: designer.guild,
           skills: designer.skills,
           otherSkill: designer.otherSkill,
           verticals: designer.verticals,
@@ -591,8 +599,7 @@ countries: Array<any> = [
           interests: designer.interests,
           projects: designer.projects,
           goToPerson: designer.goToPerson,
-          email: designer.email,
-          photo: designer.photo
+          bio: designer.bio
       })
   }
 

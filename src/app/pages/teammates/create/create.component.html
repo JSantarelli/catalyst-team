@@ -23,7 +23,7 @@
             <label>Country</label>
             <select formControlName="country" placeholder="country" [(ngModel)]="selectedCountry.id" (change)="onSelect($any($event).target.value)">
                 <option value="0">--select your country--</option>
-                <option *ngFor="let country of designerService.countries" [value]="country.name">{{ country.name }}
+                <option *ngFor="let country of catalystService.countries" [value]="country.name">{{ country.name }}
             </option>
             </select>
         </div>
@@ -49,25 +49,25 @@
         <div class="input__group">
             <label>Guild</label>
             <select formControlName="guild" placeholder="select your guild">
-                <option *ngFor="let guild of designerService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+                <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
             </select>
         </div>
         <div class="input__group">
             <label>Verticals</label>
             <select formControlName="verticals" placeholder="verticals">
-                <option *ngFor="let vert of designerService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
+                <option *ngFor="let vert of catalystService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
             </select>
             <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
         </div>
         <label>Skills</label>
         <div class="detailGrid--checkbox">
-                <ng-container *ngFor="let skill of designerService.skills; let i = index">
+                <ng-container *ngFor="let skill of catalystService.skills; let i = index">
                     <div *ngIf="skill.featured === true">
                         <input  type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
                         {{ skill.name }}
                     </div>
                 </ng-container>
-                <ng-container *ngFor="let skill of designerService.skills; let i = index">
+                <ng-container *ngFor="let skill of catalystService.skills; let i = index">
                     <div *ngIf="moreSkills && skill.featured === false">
                         <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
                         {{ skill.name }}
@@ -79,7 +79,7 @@
             <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    
         <label>Tools</label>
         <div class="detailGrid--checkbox">
-            <span *ngFor="let tool of designerService.tools; let i = index">
+            <span *ngFor="let tool of catalystService.tools; let i = index">
                 <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
                 {{ tool.name }}
             </span>

@@ -26,7 +26,7 @@ export class EditDesignerComponent implements OnInit {
   dropdownCity: any = [];
 
   constructor(
-    public designerService: CatalystService,
+    public catalystService: CatalystService,
     public formBuilder: FormBuilder,
     private router: Router,
     private act: ActivatedRoute
@@ -54,13 +54,13 @@ export class EditDesignerComponent implements OnInit {
    }
    
    onSelect(value) {
-    this.dropdownCity = this.designerService.cities.filter(i => i.country == value);
+    this.dropdownCity = this.catalystService.cities.filter(i => i.country == value);
   }
 
   ngOnInit() {
     const id = this.act.snapshot.paramMap.get('id');
 
-    this.designerService.getDesignerDoc(id).subscribe(res => {
+    this.catalystService.getDesignerDoc(id).subscribe(res => {
       this.designerRef = res;
       this.editForm = this.formBuilder.group({
         name:[this.designerRef.name],
@@ -119,7 +119,7 @@ export class EditDesignerComponent implements OnInit {
 
   onSubmit() {
     const id = this.act.snapshot.paramMap.get('id');
-    this.designerService.updateDesigner(this.editForm.value, id);
+    this.catalystService.updateDesigner(this.editForm.value, id);
     this.router.navigate(['list-designer']);
   }
 

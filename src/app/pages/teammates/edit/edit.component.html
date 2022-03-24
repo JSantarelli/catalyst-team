@@ -21,7 +21,7 @@
             <label>Country</label>
             <select formControlName="country" placeholder="country" [(ngModel)]="selectedCountry.id" (change)="onSelect($any($event).target.value)">
                 <option value="0">--select your country--</option>
-                <option *ngFor="let country of designerService.countries" [value]="country.name">{{ country.name }}
+                <option *ngFor="let country of catalystService.countries" [value]="country.name">{{ country.name }}
             </option>
             </select>
         </div>
@@ -47,19 +47,19 @@
         <div>
             <label>Guild</label>
             <select formControlName="guild" placeholder="select your guild">
-                <option *ngFor="let guild of designerService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+                <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
             </select>
         </div>
         <div>
             <label>Verticals</label>
             <select formControlName="verticals" placeholder="verticals">
-                <option *ngFor="let vert of designerService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
+                <option *ngFor="let vert of catalystService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
             </select>
             <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
         </div>
         <div>
             <label>Skills</label>
-            <span *ngFor="let skill of designerService.skills; let i = index">
+            <span *ngFor="let skill of catalystService.skills; let i = index">
                 <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
                 {{ skill.name }}
             </span>
@@ -68,7 +68,7 @@
         </div>
         <div>
             <label>Tools</label>
-            <span *ngFor="let tool of designerService.tools; let i = index">
+            <span *ngFor="let tool of catalystService.tools; let i = index">
                 <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
                 {{ tool.name }}
             </span>
