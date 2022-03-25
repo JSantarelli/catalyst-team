@@ -1,6 +1,6 @@
 <!-- <ng-container *ngIf="sidebar == true ; then template"></ng-container> -->
 <main id="layout" type="sidepanel">
-<section *ngIf="login" id="header" class="">
+<section *ngIf="login" id="header">
   <nav>
     <ul>
       <app-logo id="catalystLogo"></app-logo>
@@ -14,9 +14,9 @@
         <a href="" routerLink="/list-designer">Team dashboard</a>
       </li>
       <li>
-        <button *ngIf="!searchBar" class="button" (click)="newBarValue()">Search</button>
-        <button *ngIf="searchBar" class="button" (click)="hideSearchBar()">Stop searching</button>
-        <button class="button" (click)="goCreateDesigner()">+</button>
+        <button class="button button--orange" [ngClass]="{'button--disabled' : searchBar }" (click)="newBarValue()">Search</button>
+        <!-- <button *ngIf="searchBar" class="button button--orange" (click)="hideSearchBar()">Stop searching</button> -->
+        <button class="button button--primary" (click)="goCreateDesigner()">+</button>
     </ul>
   </nav>
 </section>
@@ -30,7 +30,7 @@
 
   </section>
   <aside id="sidepanel" *ngIf="sidePanel">
-    <button (click)="closeSidepanel()">X</button>
+    <button class="button button--orange button--floating" (click)="closeSidepanel()">X</button>
     <router-outlet>
     </router-outlet>
   </aside>

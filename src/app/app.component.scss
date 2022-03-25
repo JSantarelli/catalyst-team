@@ -56,10 +56,6 @@
 
             button {
                 align-self: center;
-
-                &:last-child {
-                    margin-left: .5rem;
-                }
             }        
         }
     }
@@ -84,6 +80,23 @@
     flex-direction: column;
     justify-content: space-around;
     height: 400px;
+}
+
+
+.form__header {
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    padding: 0 .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.form__header--fixed {
+    position: sticky;
+    background-color: rgba(255, 255, 255, 0.807);
 }
 
 .searchBar {
@@ -196,10 +209,8 @@ form[readOnly] {
             position: inherit;
             display: flex;
             justify-content: end;
-            width: 100%;
             top: 1rem;
             right: 1rem;
-            height: 100%;
         }
 
         &:hover {
@@ -427,7 +438,6 @@ form[readOnly] {
 
 // Button
 .button {
-    background-color: $orange;
     box-sizing: border-box;
     color: rgb(255, 255, 255);
     cursor: pointer;
@@ -441,21 +451,55 @@ form[readOnly] {
     letter-spacing: 0em;
     border-radius: 0.2em;
     padding: 0.6em 1.6em;
-    background: #ff6633;
     height: 38px;
 
-    &:hover {
-        background-color: $darkOrange;
-    }
+        &:not(:first-child) {
+            margin-left: .5rem;
+        }
 
-    &.button--lg {
-        height: auto;
-    }
+        &--orange {
+            background: #ff6633;
 
-    &.button--block {
-        width: 100%;
+            &:hover {
+                background-color: $darkOrange;
+            }
+        }
+
+        &--primary {
+            background: $colorTerciario;
+
+            &:hover {
+                background-color: darker($colorTerciario, 20%);
+            }
+
+        }
+        &--secondary {
+            background: $colorSecundario;
+
+            &:hover {
+                background-color: darken($colorSecundario, 20%);
+            }
+        }
+
+        &--disabled {
+            cursor: not-allowed;
+            filter: grayscale(100%);
+            user-select: none;
+        }
+
+        &--floating {
+            float: right;
+            margin-right: .5rem;
+        }
+        
+        &.button--lg {
+            height: auto;
+        }
+        
+        &.button--block {
+            width: 100%;
+        }
     }
-}
 
 // Badge
 
@@ -527,16 +571,29 @@ form[readOnly] {
     height: min-content;
 }
 
-.detailGrid--checkbox {
+#detailGrid--checkbox {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-.flex {
+%baseFlex {
     display: flex;
     flex-direction: row;
+}
+
+.flex {
+    @extend %baseFlex;
     flex-flow: wrap row;
-    justify-content: center;
+    
+    &--center {
+        @extend %baseFlex;
+        justify-content: center;
+    }
+
+    &--between {
+        @extend %baseFlex;
+        justify-content: space-between;
+    }
 }
 
 // RESPONSIVE

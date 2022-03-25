@@ -111,6 +111,11 @@ export class CreateDesignerComponent implements OnInit {
     this.moreSkills = !this.moreSkills;
   }
 
+  closeSidepanel() {
+    event.preventDefault();
+    this.catalystService.changePanelValue(false);
+  }
+
   onSubmit(event) {
     event.preventDefault();
     this.catalystService.createDesigner(this.designerForm.value);

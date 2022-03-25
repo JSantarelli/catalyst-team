@@ -1,4 +1,11 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="flex--between form__header form__header--fixed">
+        <h3>Edit designer</h3>
+        <span>
+            <button class="button button--primary" type="submit">Update</button>
+            <button class="button button--primary" type="reset">Reset</button>
+        </span>
+    </div>
     <fieldset>
         <legend>Basic info</legend>
         <div>
@@ -83,8 +90,4 @@
         <textarea formControlName="goToPerson" placeholder="goToPerson" id="" name="" rows="5"></textarea>             
         <textarea formControlName="bio" placeholder="bio" id="" name="" rows="10"></textarea>             
     </fieldset>
-    <div>
-        <button type="submit">Update</button>
-        <button type="reset">Reset</button>
-    </div>
 </form>

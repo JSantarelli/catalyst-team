@@ -1,6 +1,6 @@
-<span class="flex" [ngClass]="{ 'expandSearch' : searchBar }">
+<span class="flex--center" [ngClass]="{ 'expandSearch' : searchBar }">
     <input  *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
-    <button *ngIf="searchBar" class="button button--lg" (click)="hideSearchBar()">X</button>
+    <button *ngIf="searchBar" class="button button--lg button--orange" (click)="hideSearchBar()">X</button>
 </span>
 <section class="grid" *ngIf="login">
     <ng-container *ngFor="let designer of Designer| filter:searchText ; let i = index">
@@ -9,10 +9,10 @@
             <span class="btn__container">
                 <i class="icon trash" (click)="removeDesigner(designer)"></i>
                 <i class="icon pencil" (click)="editDesigner(designer)"></i>
-                <!-- <button class="button" routerLink="/edit/{{ designer.id }}">Update</button> -->
+                <!-- <button class="button button--orange" routerLink="/edit/{{ designer.id }}">Update</button> -->
                 <!-- <i class="icon plus" (click)="viewDesigner(i)"></i> -->
-                <!-- <button class="button" routerLink="/detail/{{ designer.id }}" (click)="viewDesigner(designer)">Detail</button> -->
-                <!-- <button class="button" [routerLink]="[designer.id]">Detail</button> -->
+                <!-- <button class="button button--orange" routerLink="/detail/{{ designer.id }}" (click)="viewDesigner(designer)">Detail</button> -->
+                <!-- <button class="button button--orange" [routerLink]="[designer.id]">Detail</button> -->
             </span>
         </div>
         <img class="card__img border border-{{ designer.guild }}" src="{{ designer.photo }}" alt=""> 
