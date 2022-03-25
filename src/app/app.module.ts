@@ -20,7 +20,8 @@ import { CatalystService } from './services/catalyst.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DetailDesignerComponent } from './pages/teammates/detail/detail.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './pages/login/login.component'
 // import { searchPipe } from './pipes/search.pipe'
  
 
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http'
     EditDesignerComponent,
     ListDesignersComponent,
     DetailDesignerComponent,
-    LogoComponent
+    LogoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class ListDesignersComponent implements OnInit {
   searchText: any;
   sidePanel: boolean = true;
   searchBar = false;
+  login = false;
 
   active: boolean;
   @Output() sidePanelEvent = new EventEmitter<boolean>();
@@ -27,6 +28,7 @@ export class ListDesignersComponent implements OnInit {
 
   ngOnInit(){
     this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
+    this.catalystService.currentLoginValue.subscribe(login => this.login = login)
 
     this.catalystService.getDesignersList().subscribe(res =>{ this.Designer = res.map( e => { return {
         id : e.payload.doc.id,

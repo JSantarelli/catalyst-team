@@ -57,6 +57,7 @@ export class CreateDesignerComponent implements OnInit {
     // this.showAll();
     // this.onSelect(this.selectedCountry.id);
 
+    this.catalystService.currentPanelValue.subscribe(sidePanel => this.sidePanel = sidePanel)
     this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
 
   }
@@ -113,7 +114,7 @@ export class CreateDesignerComponent implements OnInit {
   onSubmit(event) {
     event.preventDefault();
     this.catalystService.createDesigner(this.designerForm.value);
-    this.router.navigate(['list-designer']);
+    this.catalystService.changePanelValue(false);
   }
 
 }

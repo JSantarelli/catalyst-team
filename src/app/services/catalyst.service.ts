@@ -15,6 +15,12 @@ import { BehaviorSubject } from 'rxjs';
   private searchBarSource = new BehaviorSubject<boolean>(false);
   currentBarValue = this.searchBarSource.asObservable();
 
+  private sidePanelSource = new BehaviorSubject<boolean>(false);
+  currentPanelValue = this.sidePanelSource.asObservable();
+
+  private loginSource = new BehaviorSubject<boolean>(false);
+  currentLoginValue = this.loginSource.asObservable();
+
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -108,6 +114,11 @@ countries: Array<any> = [
       {
           id: 14,
           name: "CA",
+          flag: ""
+      },
+      {
+          id: 15,
+          name: "MX",
           flag: ""
       }
   ]
@@ -526,13 +537,14 @@ countries: Array<any> = [
     { name: 'Sketch', value:'Sketch'},
     { name: 'InVision', value:'InVision'},
     { name: 'Adobe XD', value:'Adobe XD'},
+    { name: 'Adobe After Effects', value:'Adobe After Effects'},
+    { name: 'Adobe Animate', value:'Adobe Animate'},
+    { name: 'Adobe Dreamweaber', value:'Adobe Dreamweaber'},
     { name: 'Adobe Illustrator', value:'Adobe Illustrator'},
     { name: 'Adobe Photoshop', value:'Adobe Photoshop'},
     { name: 'Adobe Lightroom', value:'Adobe Lightroom'},
     { name: 'Adobe Premiere', value:'Adobe Premiere'},
-    { name: 'Adobe Animate', value:'Adobe Animate'},
     { name: 'Adobe InDesign', value:'Adobe InDesign'},
-    { name: 'Adobe Dreamweaber', value:'Adobe Dreamweaber'},
     { name: 'Blender', value:'Blender'},
     { name: 'Corel Draw', value:'Corel Draw'},
     { name: 'VC Code', value:'VC Code'},
@@ -557,11 +569,21 @@ countries: Array<any> = [
     { name: 'Magento', value:'Magento'},
     { name: 'Joomla', value:'Joomla'},
     { name: 'Webflow', value:'Webflow'},
-    { name: 'Wix', value:'Wix'},    
+    { name: 'Wix', value:'Wix'},
+    { name: 'BetterTouchTool', value:'BetterTouchTool'},
+    { name: 'Alfred', value:'Alfred'}
   ]
 
   changeBarValue(searchBar: boolean) {
     this.searchBarSource.next(searchBar);
+  }
+
+  changePanelValue(sidePanel: boolean) {
+    this.sidePanelSource.next(sidePanel);
+  }
+
+  changeLoginValue(login: boolean) {
+    this.loginSource.next(login);
   }
 
   getDesignerDoc(id) {

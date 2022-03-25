@@ -2,7 +2,7 @@
     <input  *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
     <button *ngIf="searchBar" class="button button--lg" (click)="hideSearchBar()">X</button>
 </span>
-<section class="grid">
+<section class="grid" *ngIf="login">
     <ng-container *ngFor="let designer of Designer| filter:searchText ; let i = index">
     <div #card class="card" [ngClass]="{'expandCard' : designer.details }" (click)="viewDesigner(i)">
         <div class="card__overlay card__overlay--{{ designer.guild }}">

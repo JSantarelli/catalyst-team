@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'catalyst-team';
   sidePanel = false;
   searchBar = false;
+  login = true;
 
   constructor(
     private catalystService: CatalystService,
@@ -20,6 +21,7 @@ export class AppComponent {
 
   ngOnInit(){
     this.catalystService.currentBarValue.subscribe(searchBar => this.searchBar = searchBar)
+    this.catalystService.currentLoginValue.subscribe(login => this.login = login)
   }
 
   goCreateDesigner() {
