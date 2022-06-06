@@ -25,6 +25,12 @@ export class CreateDesignerComponent implements OnInit {
   sidePanel = false;
   searchBar = false;
 
+
+  basicTemplateValue = true;
+  contactTemplateValue = true;
+  profileTemplateValue = true;
+  complementaryTemplateValue = true;
+
   constructor(
     public catalystService: CatalystService,
     private formBuilder: FormBuilder,
@@ -122,4 +128,16 @@ export class CreateDesignerComponent implements OnInit {
     this.catalystService.changePanelValue(false);
   }
 
+  showBasic() {
+    this.basicTemplateValue = !this.basicTemplateValue;
+  }
+  showContact() {
+    this.contactTemplateValue = !this.contactTemplateValue;
+  }
+  showProfile() {
+    this.profileTemplateValue = !this.profileTemplateValue;
+  }
+  showComplementary() {
+    this.complementaryTemplateValue = !this.complementaryTemplateValue;
+  }
 }

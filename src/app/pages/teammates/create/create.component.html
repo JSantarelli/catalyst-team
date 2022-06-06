@@ -6,23 +6,52 @@
             <button class="button button--primary" type="reset">Reset</button>
         </span>
     </div>
-    <fieldset>
-        <legend>Basic info</legend>
-        <div class="input__group">
-            <label>Name</label>
-            <input type="text" formControlName="name" placeholder="full name" required>
+
+<div class="tabSet">
+    <input type="radio" name="tabset" id="tab1" aria-controls="basic" checked>
+    <input type="radio" name="tabset" id="tab2" aria-controls="contact">
+    <input type="radio" name="tabset" id="tab3" aria-controls="profile">
+    <input type="radio" name="tabset" id="tab4" aria-controls="complementary">
+    <nav class="flex flex--between">
+        <div class="tab">
+            <!-- Tab 1 -->
+            <label for="tab1">Basic Info</label>
         </div>
-        <div class="input__group">
-            <label>Lastname</label>
-            <input type="text" formControlName="lastName" placeholder="full name" required>
+        <div class="tab">
+            <!-- Tab 2 -->
+            <label for="tab2">Contact Info</label>
         </div>
-    
-        <div class="input__group">
-            <label>Photo</label>
-            <input type="text" formControlName="photo" placeholder="paste URL" required>
+        <div class="tab">
+            <!-- Tab 3 -->
+            <label for="tab3">Profile Info</label>
         </div>
-    </fieldset>
-    <fieldset>   
+        <div class="tab">
+            <!-- Tab 4 -->
+            <label for="tab4">Complementary Info</label>
+        </div>
+    </nav>
+
+    <div class="tab-panels">
+        <section id="basic" class="tab-panel">
+            <fieldset>
+                <legend>Basic info</legend>
+                <div class="input__group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" placeholder="full name" required>
+                </div>
+                <div class="input__group">
+                    <label>Lastname</label>
+                    <input type="text" formControlName="lastName" placeholder="full name" required>
+                </div>
+            
+                <div class="input__group">
+                    <label>Photo</label>
+                    <input type="text" formControlName="photo" placeholder="paste URL" required>
+                </div>
+            </fieldset>
+      </section>
+      <section id="contact" class="tab-panel">
+        <fieldset>   
         <legend>Contact info</legend>
         <div class="input__group">
             <label>Country</label>
@@ -47,56 +76,64 @@
             <label>Phone</label>
             <input type="number" formControlName="phone" placeholder="cel number">
         </div>
-    </fieldset>
-
-    <fieldset>
-        <legend>Profile</legend>
-        <div class="input__group">
-            <label>Guild</label>
-            <select formControlName="guild" placeholder="select your guild">
-                <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
-            </select>
-        </div>
-        <div class="input__group">
-            <label>Verticals</label>
-            <select formControlName="verticals" placeholder="verticals">
-                <option *ngFor="let vert of catalystService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
-            </select>
-            <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
-        </div>
-        <label>Skills</label>
-        <div id="detailGrid--checkbox">
-                <ng-container *ngFor="let skill of catalystService.skills; let i = index">
-                    <div *ngIf="skill.featured === true">
-                        <input  type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
-                        {{ skill.name }}
+        </fieldset>
+        </section>
+        <section id="profile" class="tab-panel">
+            <fieldset>
+                <legend>Profile</legend>
+                <div class="input__group">
+                    <label>Guild</label>
+                    <select formControlName="guild" placeholder="select your guild">
+                        <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+                    </select>
+                </div>
+                <div class="input__group">
+                    <label>Verticals</label>
+                    <select formControlName="verticals" placeholder="verticals">
+                        <option *ngFor="let vert of catalystService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
+                    </select>
+                    <label for="">Another vertical</label>
+                    <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
+                </div>
+                <label>Skills</label>
+                <div id="detailGrid--checkbox">
+                        <ng-container *ngFor="let skill of catalystService.skills; let i = index">
+                            <div class="flex" *ngIf="skill.featured === true">
+                                <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
+                                <p>{{ skill.name }}</p>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngFor="let skill of catalystService.skills; let i = index">
+                            <div class="flex" *ngIf="moreSkills && skill.featured === false">
+                                <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
+                                <p>{{ skill.name }}</p>
+                            </div>
+                        </ng-container>
                     </div>
-                </ng-container>
-                <ng-container *ngFor="let skill of catalystService.skills; let i = index">
-                    <div *ngIf="moreSkills && skill.featured === false">
-                        <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
-                        {{ skill.name }}
+                    <input type="checkbox" class="" (click)="showMore()">Show more
+                    <label>Other skill</label>
+                    <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    
+                <label>Tools</label>
+                <div class="detailGrid--checkbox">
+                    <div class="flex" *ngFor="let tool of catalystService.tools; let i = index">
+                        <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
+                        <p>{{ tool.name }}</p>
                     </div>
-                </ng-container>
-            </div>
-            <input type="checkbox" class="" (click)="showMore()">Show more
-            <label>Other skill</label>
-            <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    
-        <label>Tools</label>
-        <div class="detailGrid--checkbox">
-            <span *ngFor="let tool of catalystService.tools; let i = index">
-                <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
-                {{ tool.name }}
-            </span>
-        </div>
-        <label>Other tools</label>
-        <textarea formControlName="otherTool" placeholder="otherTool" id="" name="" rows="1"></textarea>             
-    </fieldset>
-    <fieldset>
-        <legend>Complementary info</legend>
-        <textarea formControlName="interests" placeholder="interests" id="" name="" rows="5"></textarea>             
-        <textarea formControlName="projects" placeholder="projects" id="" name="" rows="5"></textarea>             
-        <textarea formControlName="goToPerson" placeholder="goToPerson" id="" name="" rows="5"></textarea>             
-        <textarea formControlName="bio" placeholder="bio" id="" name="" rows="10"></textarea>             
-    </fieldset>
+                </div>
+                <label>Other tools</label>
+                <textarea formControlName="otherTool" placeholder="otherTool" id="" name="" rows="1"></textarea>             
+            </fieldset>
+        </section>
+        <section id="complementary" class="tab-panel">
+            <fieldset>
+                <legend>Complementary info</legend>
+                <textarea formControlName="interests" placeholder="interests" id="" name="" rows="5"></textarea>             
+                <textarea formControlName="projects" placeholder="projects" id="" name="" rows="5"></textarea>             
+                <textarea formControlName="goToPerson" placeholder="goToPerson" id="" name="" rows="5"></textarea>             
+                <textarea formControlName="bio" placeholder="bio" id="" name="" rows="10"></textarea>             
+            </fieldset>
+        </section>
+    </div>
+</div>
 </form>
+

@@ -68,7 +68,7 @@
             <label>Skills</label>
             <span *ngFor="let skill of catalystService.skills; let i = index">
                 <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
-                {{ skill.name }}
+                <p>{{ skill.name }}</p>
             </span>
             <label>Other skill</label>
             <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    

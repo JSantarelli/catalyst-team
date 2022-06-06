@@ -33,3 +33,37 @@
     max-height: 100vh;
     overflow-y: scroll;
 }
+
+// Forms tabs
+.tabSet > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+  
+  .tabSet .tab-panel {
+    display: none;
+  }
+  
+  .tabSet > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabSet > input:nth-child(2):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabSet > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabSet > input:nth-child(4):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabSet > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabSet > input:nth-child(6):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+  
+  .tabSet > input:first-child:checked ~ nav > .tab:first-child,
+  .tabSet > input:nth-child(2):checked ~ nav > .tab:nth-child(2),
+  .tabSet > input:nth-child(3):checked ~ nav > .tab:nth-child(3),
+  .tabSet > input:nth-child(4):checked ~ nav > .tab:nth-child(4),
+  .tabSet > input:nth-child(5):checked ~ nav > .tab:nth-child(5),
+  .tabSet > input:nth-child(6):checked ~ nav > .tab:nth-child(6) {
+    border-bottom: 2px solid $colorTerciario;
+    label {
+        color: black;
+        opacity: 1;
+    }
+  }
+  
+  

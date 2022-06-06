@@ -82,7 +82,6 @@
     height: 400px;
 }
 
-
 .form__header {
     box-sizing: border-box;
     width: 100%;
@@ -143,7 +142,7 @@ label {
     margin-bottom: 0.625rem;
     width: auto!important;
 }
-input, select, textarea {
+input:not([type='checkbox']), select, textarea {
     box-shadow: none;
     font-size: 1rem;
     height: auto;
@@ -160,7 +159,11 @@ select {
 }
 
 textarea {
-    width: 95%;
+    width: 90%;
+}
+
+input[type='checkbox'] {
+    margin-right: .25rem;
 }
 
 form[readOnly] {
@@ -563,6 +566,40 @@ form[readOnly] {
     top: 75%;
 }
 
+// Tabs
+.tabSet {
+    > nav {
+        display: flex;
+        justify-content: flex-start;
+        width: auto;
+        .tab {
+            padding: .25rem .75rem;
+            border-right: 1px solid #bdbdb0;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            input {
+                display: none;
+            }
+    
+            label {
+                font-family: 'Montserrat Black', sans-serif;
+                font-weight: 900;
+                color: gray;
+                margin-right: .5rem;
+        
+                &:hover {
+                    color: black;
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
 // WRAPPERS
 .detailGrid {
     display: grid;
@@ -573,7 +610,8 @@ form[readOnly] {
 
 #detailGrid--checkbox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    grid-gap: .25rem;
 }
 
 %baseFlex {
@@ -593,6 +631,11 @@ form[readOnly] {
     &--between {
         @extend %baseFlex;
         justify-content: space-between;
+    }
+
+    &--start {
+        @extend %baseFlex;
+        justify-content: flex-start;
     }
 }
 
